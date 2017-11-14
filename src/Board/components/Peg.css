@@ -1,0 +1,39 @@
+.Peg{
+    width: 30%;
+    height: 18%;
+    display: inline-block;
+    background-size: 50px;
+    background-repeat: no-repeat;
+}
+
+.Peg.black {
+    background-image: url("../images/blackPeg.png");
+}
+
+.Peg.blue {
+    background-image: url("../images/bluePeg.png");
+}
+
+.Peg.brown {
+    background-image: url("../images/brownPeg.png");
+}
+
+.Peg.gold {
+    background-image: url("../images/goldPeg.png");
+}
+
+.Peg.green {
+    background-image: url("../images/greenPeg.png");
+}
+
+.Peg.orange {
+    background-image: url("../images/orangePeg.png");
+}
+
+.Peg.red {
+    background-image: url("../images/redPeg.png");
+}
+
+.Peg.white {
+    background-image: url("../images/whitePeg.png");
+}

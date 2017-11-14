@@ -1,0 +1,84 @@
+.Board {
+    display: block;
+    height: 620px;
+    width: auto; /*450px;*/
+    height: auto;
+    margin: 0px auto;
+    background-color: rosybrown;
+}
+
+.Board .table {
+    /*
+    display: inline-block;
+    width: 100%;
+    */
+}
+.Board .tbody{
+    /*
+    display: block;
+    */
+}
+
+.Board .tr {
+    /*
+    position: relative;
+    display: inline-flex;
+    height: 8%;
+    width: 100%;
+    */
+   /* border-style: dashed;
+    mix-blend-mode: screen;*/
+}
+
+.Board .tr button {
+    padding: 4px 0;
+}
+
+.Board .td {
+    display: inline-block;
+    height: 50px;
+    width: 80px;
+}
+
+.checkButton {
+    /*
+    padding-top: 12px;
+    padding-left: 32px;
+    */
+}
+
+.Board.black {
+    cursor: url("./images/cursor/black.cur") 15 15, auto;
+}
+
+.Board.blue {
+    cursor: url("./images/cursor/blue.cur") 15 15, auto;
+}
+
+.Board.brown {
+    cursor: url("./images/cursor/brown.cur") 15 15, auto;
+}
+
+.Board.gold {
+    cursor: url("./images/cursor/gold.cur") 15 15, auto;
+}
+
+.Board.green {
+    cursor: url("./images/cursor/green.cur") 15 15, auto;
+}
+
+.Board.orange {
+    cursor: url("./images/cursor/orange.cur") 15 15, auto;
+}
+
+.Board.red {
+    cursor: url("./images/cursor/red.cur") 15 15, auto;
+}
+
+.Board.white {
+    cursor: url("./images/cursor/white.cur") 15 15, auto;
+}
+
+.Board.default {
+    cursor: default;
+}
