@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import {CREATE_BOARD, SET_RANDOM_TARGET, PLACE_PEG, CHECK_SELECTION} from '../Actions/pegActions'
-import {resetArray, randomPicks, place, check} from '../helperFunctions'
+import {resetArray, randomPicks, place, checkResult} from '../helperFunctions'
 const initialState = {
     availableColours: ['black', 'blue', 'brown', 'gold', 'green', 'orange', 'red', 'white'],
     target: [],
@@ -8,6 +8,7 @@ const initialState = {
     guessResults: resetArray(12, {onSpot:0, notOnSpot:0}),
     currentGuess:[],
     pegsOnBoard: [],
+    completed: false
 }
 
 const peg = (prevState = initialState, action) => {
@@ -30,18 +31,13 @@ const peg = (prevState = initialState, action) => {
         case PLACE_PEG:
             return place(prevState, action.row, action.col, action.value)
         case CHECK_SELECTION:
-            return  (prevState.currentGuess.includes("")? prevState:
-            {...prevState, currentRow: prevState.currentRow+1, 
-                currentGuess: resetArray(prevState.currentGuess.length),
-                guessResults: check(prevState.guessResults, prevState.currentGuess, 
-                    prevState.target, prevState.currentRow-1)
-            })
+            return checkResult(prevState)
         default:
             return prevState
     }
 }
 
-check.PropTypes = {
+checkResult.PropTypes = {
     state: PropTypes.arrayOf(PropTypes.shape({
         //isValid: PropTypes.bool.isRequired,
         onSpot: PropTypes.number,

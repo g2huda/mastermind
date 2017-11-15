@@ -10,13 +10,6 @@
     padding: 4px 0;
 }
 
-.checkButton {
-    /*
-    padding-top: 12px;
-    padding-left: 32px;
-    */
-}
-
 .Board.black {
     cursor: url("./images/cursor/black.cur") 15 15, auto;
 }

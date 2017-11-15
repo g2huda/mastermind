@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Board.css';
 
+//import Shield from './components/Shield'
 import Cell from './components/Cell';
 import PegHolderContainer from './components/PegHolderContainer';
 import CheckButton from './components/CheckButton';
@@ -9,7 +10,6 @@ import KeyPegHolder from './components/KeyPegHolder';
 
 const buildBoard = (peg, cursor, placePeg, checkSelection) => {
       var {pegsOnBoard, currentRow, guessResults, target} = peg;
-      //console.log(guessResults, target)
       
       return pegsOnBoard.map((rowVal, rowInd) => {
         let currRow = pegsOnBoard.length-rowInd;
@@ -19,23 +19,32 @@ const buildBoard = (peg, cursor, placePeg, checkSelection) => {
             <KeyPegHolder key={`keyPegHolder${rowInd}`} keyPegs={target} guessResult={guessResults[currRow-1]}/>
           </td>
           {rowVal.map((colVal, colInd) =>(
-            <td key={`peg${rowInd}${colInd}`}>
-              <Cell key={`${rowInd}${colInd}`} currentClass={pegsOnBoard[currRow-1][colInd]} 
+          <td key={`peg${rowInd}${colInd}`}>
+            <Cell key={`${rowInd}${colInd}`} currentClass={pegsOnBoard[currRow-1][colInd]} 
               onClick={()=>placePeg(currRow, colInd, cursor)}/>
-            </td>
-            )
-          )}
+          </td>))
+          }
           <CheckButton key={rowInd} currRow={currRow} 
           activeRow={currentRow} 
           checkSelection={checkSelection}/>
         </tr>
       )})
 }
-  
+
+const buildShield = (target, completed) => (
+  <tr>
+    {target.map((val, ind) => (<td key={`Sheild${ind}`} className="ShieldCol">
+      <Cell key={`Sheild${ind}`} currentClass={completed?val:"Shield"} />
+      </td>
+    ))}
+  </tr>
+)
+
 const Board = ({peg, cursorType, placePeg, checkSelection}) => (
   <div className={`Board ${cursorType}`}> 
     <table>
       <tbody>
+        {buildShield(peg.target, peg.completed)}
         {buildBoard(peg, cursorType, placePeg, checkSelection)}
       </tbody>
     </table>

@@ -2,15 +2,6 @@
     border-style: solid;
 }
 
-.KeyPegHolder td::before {
-    /* content: ' \100CF'; */
-    /* font-size: 200px; */
-}
-
-.KeyPegHolder tr{
-
-}
-
 .KeyPegHolder td{
     background-image: url("../images/emptySocket.png");
     background-size: 18px;
@@ -18,7 +9,6 @@
     width: 18px;
     height: 16px;
     background-position-x: center;
-    mix-blend-mode: color;
 }
 
 .KeyPegHolder .onSpot{

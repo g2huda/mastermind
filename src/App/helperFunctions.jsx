@@ -13,18 +13,22 @@ export const randomPicks = (array, number) => {
     return result;
 }
 
-
-export const check = (state, guess, target, row) => {
-
-    let result = target.map((val, ind) => (
-        guess.includes(val)?(
-            (target[ind] === guess[ind]?guessState.ON_SPOT:guessState.NOT_ON_SPOT)):
+export const checkResult = (prevState) => {
+    let result = prevState.target.map((val, ind) => (
+        prevState.currentGuess.includes(val)?(
+            (prevState.target[ind] === prevState.currentGuess[ind]?guessState.ON_SPOT:guessState.NOT_ON_SPOT)):
             guessState.NOT_IN_TARGET ));
     let onSpot = result.filter((value) => value === guessState.ON_SPOT).length;
     let notOnSpot = result.filter((value) => value === guessState.NOT_ON_SPOT).length;
-    console.log({onSpot, notOnSpot, target, guess})
-    return state.map((val, ind) => ind===row? {...val, onSpot, notOnSpot}: val);
- }
+    //console.log({onSpot, notOnSpot, prevState.target, prevState.guess})
+    return  (prevState.currentGuess.includes("")? prevState:
+    {...prevState, currentRow: prevState.currentRow+1, 
+        currentGuess: resetArray(prevState.currentGuess.length),
+        guessResults: prevState.guessResults.map((result, resultInd) => (
+            resultInd===prevState.currentRow-1? {...result, onSpot, notOnSpot}: result)),
+        completed: onSpot === prevState.target.length
+    })
+}
 
 export const place = (prevState, row, col, value) => {
     if(!prevState.availableColours.includes(value)|| prevState.currentRow!==row){

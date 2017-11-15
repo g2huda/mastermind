@@ -7,6 +7,15 @@
     height: 49px;
     background-position-x: center;
 }
+
+.Shield {
+    background-image: url("../images/questionMark.png");
+}
+
+.ShieldCol {
+    
+}
+
 .Cell.black {
     background-image: url("../images/blackPeg.png");
 }
