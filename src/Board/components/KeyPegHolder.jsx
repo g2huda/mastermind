@@ -16,11 +16,10 @@ const createHolder = (keyPegs, guessResult) => {
         arr.push(classNames.slice(y, y+cols));
     }
    
-
     return arr.map((rowVal, rowInd) => (
         <tr key={`keyPeg${rowInd}`}>
          {rowVal.map((colVal, colInd) => (
-            <td key={`keyPeg${rowInd}${colInd}`}>{guessResult.onSpot}</td>
+            <td key={`keyPeg${rowInd}${colInd}`} className={colVal}></td>
           ))}
         </tr>
     ));

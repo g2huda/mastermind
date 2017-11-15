@@ -14,7 +14,7 @@ export const randomPicks = (array, number) => {
 }
 
 
-export const check = (state, guess, target) => {
+export const check = (state, guess, target, row) => {
 
     let result = target.map((val, ind) => (
         guess.includes(val)?(
@@ -23,11 +23,7 @@ export const check = (state, guess, target) => {
     let onSpot = result.filter((value) => value === guessState.ON_SPOT).length;
     let notOnSpot = result.filter((value) => value === guessState.NOT_ON_SPOT).length;
     console.log({onSpot, notOnSpot, target, guess})
-    return [...state, {
-        //isValid: true,
-        onSpot,
-        notOnSpot
-    }];
+    return state.map((val, ind) => ind===row? {...val, onSpot, notOnSpot}: val);
  }
 
 export const place = (prevState, row, col, value) => {

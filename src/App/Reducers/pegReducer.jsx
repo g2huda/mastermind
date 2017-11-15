@@ -8,7 +8,6 @@ const initialState = {
     guessResults: resetArray(12, {onSpot:0, notOnSpot:0}),
     currentGuess:[],
     pegsOnBoard: [],
-   // keyPegs: []
 }
 
 const peg = (prevState = initialState, action) => {
@@ -34,7 +33,8 @@ const peg = (prevState = initialState, action) => {
             return  (prevState.currentGuess.includes("")? prevState:
             {...prevState, currentRow: prevState.currentRow+1, 
                 currentGuess: resetArray(prevState.currentGuess.length),
-                guessResults: check(prevState.guessResults, prevState.currentGuess, prevState.target)
+                guessResults: check(prevState.guessResults, prevState.currentGuess, 
+                    prevState.target, prevState.currentRow-1)
             })
         default:
             return prevState

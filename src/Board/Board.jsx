@@ -16,7 +16,7 @@ const buildBoard = (peg, cursor, placePeg, checkSelection) => {
         return (
         <tr key={`board${rowInd}`}>
           <td>
-            <KeyPegHolder key={`keyPegHolder${rowInd}`} keyPegs={target} guessResult={guessResults[rowInd]}/>
+            <KeyPegHolder key={`keyPegHolder${rowInd}`} keyPegs={target} guessResult={guessResults[currRow-1]}/>
           </td>
           {rowVal.map((colVal, colInd) =>(
             <td key={`peg${rowInd}${colInd}`}>
