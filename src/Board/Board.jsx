@@ -9,12 +9,14 @@ import KeyPegHolder from './components/KeyPegHolder';
 
 const buildBoard = (peg, cursor, placePeg, checkSelection) => {
       var {pegsOnBoard, currentRow, guessResults, target} = peg;
+      //console.log(guessResults, target)
+      
       return pegsOnBoard.map((rowVal, rowInd) => {
         let currRow = pegsOnBoard.length-rowInd;
         return (
         <tr key={`board${rowInd}`}>
           <td>
-            <KeyPegHolder key={`keyPegHolder${rowInd}`} keyPegs={target} guessResults={guessResults}/>
+            <KeyPegHolder key={`keyPegHolder${rowInd}`} keyPegs={target} guessResult={guessResults[rowInd]}/>
           </td>
           {rowVal.map((colVal, colInd) =>(
             <td key={`peg${rowInd}${colInd}`}>

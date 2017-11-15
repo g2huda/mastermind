@@ -5,7 +5,7 @@ const initialState = {
     availableColours: ['black', 'blue', 'brown', 'gold', 'green', 'orange', 'red', 'white'],
     target: [],
     currentRow: 1,
-    guessResults: [],
+    guessResults: resetArray(12, {onSpot:0, notOnSpot:0}),
     currentGuess:[],
     pegsOnBoard: [],
    // keyPegs: []
@@ -18,6 +18,7 @@ const peg = (prevState = initialState, action) => {
             return {...initialState, 
                 currentGuess:initialRow,
                 pegsOnBoard: resetArray(action.rows, initialRow),
+                //guessResults: resetArray(action.rows, {onSpot:0, notOnSpot:0})
                // keyPegs: resetArray(initialRow)
             }
         case SET_RANDOM_TARGET: 

@@ -6,7 +6,7 @@ import store from './store'
 
 import GameContainer from '../Game/GameContainer';
 
-console.log(store.getState());
+//console.log(store.getState());
   
 class App extends Component {
   render() {

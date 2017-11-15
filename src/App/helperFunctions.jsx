@@ -13,6 +13,7 @@ export const randomPicks = (array, number) => {
     return result;
 }
 
+
 export const check = (state, guess, target) => {
 
     let result = target.map((val, ind) => (

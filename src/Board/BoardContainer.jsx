@@ -9,6 +9,7 @@ class BoardContainer extends Component {
   constructor(props){
     super(props);
     props.createBoard(props.board.columns, props.board.rows);
+    console.log(props.peg.guessResults)
   }
 
   componentDidMount(){
