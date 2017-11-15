@@ -12,10 +12,12 @@ const buildBoard = (peg, cursor, placePeg, checkSelection) => {
       return pegsOnBoard.map((rowVal, rowInd) => {
         let currRow = pegsOnBoard.length-rowInd;
         return (
-        <tr key={`board${rowInd}`} class="tr">
-          <KeyPegHolder key={`keyPegHolder${rowInd}`} keyPegs={target} guessResults={guessResults}/>
+        <tr key={`board${rowInd}`}>
+          <td>
+            <KeyPegHolder key={`keyPegHolder${rowInd}`} keyPegs={target} guessResults={guessResults}/>
+          </td>
           {rowVal.map((colVal, colInd) =>(
-            <td key={`peg${rowInd}${colInd}`} className="td">
+            <td key={`peg${rowInd}${colInd}`}>
               <Cell key={`${rowInd}${colInd}`} currentClass={pegsOnBoard[currRow-1][colInd]} 
               onClick={()=>placePeg(currRow, colInd, cursor)}/>
             </td>
@@ -30,8 +32,8 @@ const buildBoard = (peg, cursor, placePeg, checkSelection) => {
   
 const Board = ({peg, cursorType, placePeg, checkSelection}) => (
   <div className={`Board ${cursorType}`}> 
-    <table className="table">
-      <tbody className="tbody">
+    <table>
+      <tbody>
         {buildBoard(peg, cursorType, placePeg, checkSelection)}
       </tbody>
     </table>

@@ -29,8 +29,6 @@ const mapStateToProps = (state) => {
   return {
     board: state.board,
     peg: state.peg,
-//    pegsOnBoard: state.peg.pegsOnBoard,
-//    activeRow: state.peg.currentRow
   }
 }
 

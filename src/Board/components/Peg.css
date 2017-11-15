@@ -1,9 +1,10 @@
 .Peg{
-    width: 30%;
-    height: 18%;
+    width: 20%;
+    height: 50px;
     display: inline-block;
     background-size: 50px;
     background-repeat: no-repeat;
+    background-position: center;
 }
 
 .Peg.black {

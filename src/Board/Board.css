@@ -1,43 +1,13 @@
 .Board {
     display: block;
-    height: 620px;
-    width: auto; /*450px;*/
+    width: auto; 
     height: auto;
     margin: 0px auto;
     background-color: rosybrown;
 }
 
-.Board .table {
-    /*
-    display: inline-block;
-    width: 100%;
-    */
-}
-.Board .tbody{
-    /*
-    display: block;
-    */
-}
-
-.Board .tr {
-    /*
-    position: relative;
-    display: inline-flex;
-    height: 8%;
-    width: 100%;
-    */
-   /* border-style: dashed;
-    mix-blend-mode: screen;*/
-}
-
 .Board .tr button {
     padding: 4px 0;
-}
-
-.Board .td {
-    display: inline-block;
-    height: 50px;
-    width: 80px;
 }
 
 .checkButton {

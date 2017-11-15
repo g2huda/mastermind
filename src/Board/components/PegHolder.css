@@ -1,6 +1,4 @@
 .PegHolder {
-    width: 205px;
-    height: 300px;
-    display: inline-block;
-    position: fixed;
+    border-style: double;
+    border-width: 10px;
 }

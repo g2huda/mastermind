@@ -3,9 +3,9 @@
     background-image: url("../images/emptySocket.png");
     background-size: 50px;
     background-repeat: no-repeat;
-    width: 60%;
-    height: 100%;
-    margin: 0px auto;
+    width: 65px;
+    height: 49px;
+    background-position-x: center;
 }
 .Cell.black {
     background-image: url("../images/blackPeg.png");

@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import './KeyPegHolder.css'
 
 const createHolder = (keyPegs) => {
     let cols = Math.ceil(keyPegs.length/2);
@@ -18,13 +19,11 @@ const createHolder = (keyPegs) => {
 }
 
 const KeyPegHolder = ({keyPegs, guessResults}) => (
-    <td className='KeyPegHolder'>
-        <table>
-            <tbody>
-                {createHolder(keyPegs)}
-            </tbody>
-        </table>
-    </td>
+    <table className='KeyPegHolder'>
+        <tbody>
+            {createHolder(keyPegs)}
+        </tbody>
+    </table>
 )
 
 KeyPegHolder.PropTypes = {
