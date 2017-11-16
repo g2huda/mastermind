@@ -20,7 +20,6 @@ class GameContainer extends Component {
     console.log("COMPONENT DID MOUNT");
     let columns = this.props.board.columns;
     let rows = this.props.board.rows;
-    
     this.props.setRandomTarget(columns, rows);
   }
 
@@ -47,7 +46,7 @@ class GameContainer extends Component {
     let columns = this.props.board.columns;
     let rows = this.props.board.rows;
     this.props.setRandomTarget(columns, rows);
-   // this.timerID = setInterval(()=>this.props.tick(), 1000);
+    this.timerID = setInterval(()=>this.props.tick(), 1000);
   }
 
   render() {

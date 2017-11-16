@@ -9,7 +9,7 @@ import CheckButton from './components/CheckButton';
 import KeyPegHolder from './components/KeyPegHolder';
 
 const buildBoard = (peg, cursor, placePeg, checkSelection) => {
-      var {pegsOnBoard, currentRow, guessResults, target} = peg;
+      var {pegsOnBoard, currentRow, guessResults, target, completed} = peg;
       
       return pegsOnBoard.map((rowVal, rowInd) => {
         let currRow = pegsOnBoard.length-rowInd;
@@ -26,7 +26,8 @@ const buildBoard = (peg, cursor, placePeg, checkSelection) => {
           }
           <CheckButton key={rowInd} currRow={currRow} 
           activeRow={currentRow} 
-          checkSelection={checkSelection}/>
+          checkSelection={checkSelection}
+          completed={completed}/>
         </tr>
       )})
 }
