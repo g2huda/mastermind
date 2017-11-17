@@ -6,6 +6,9 @@
     width: 65px;
     height: 49px;
     background-position-x: center;
+    line-height: 50px;
+    font-size: x-large;
+    font-style: italic;
 }
 
 .Shield {
@@ -18,6 +21,7 @@
 
 .Cell.black {
     background-image: url("../images/blackPeg.png");
+    color: bisque;
 }
 .Cell.blue {
     background-image: url("../images/bluePeg.png");

@@ -8,7 +8,7 @@ import './PegHolder.css';
 const PegHolder = ({pegColours, onPegClick}) => (
   <div className="PegHolder">
     {pegColours.map((colour, index) => (
-      <Peg key={index} colour={colour} onClick={() => onPegClick(colour)} />
+      <Peg key={index} colour={colour} value={index} onClick={() => onPegClick(colour)} />
     ))}
   </div>
 );

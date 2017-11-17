@@ -9,7 +9,7 @@ import CheckButton from './components/CheckButton';
 import KeyPegHolder from './components/KeyPegHolder';
 
 const buildBoard = (peg, cursor, placePeg, checkSelection) => {
-      var {pegsOnBoard, currentRow, guessResults, target, completed} = peg;
+      var {availableColours, pegsOnBoard, currentRow, guessResults, target, completed} = peg;
       
       return pegsOnBoard.map((rowVal, rowInd) => {
         let currRow = pegsOnBoard.length-rowInd;
@@ -21,6 +21,7 @@ const buildBoard = (peg, cursor, placePeg, checkSelection) => {
           {rowVal.map((colVal, colInd) =>(
           <td key={`peg${rowInd}${colInd}`}>
             <Cell key={`${rowInd}${colInd}`} currentClass={pegsOnBoard[currRow-1][colInd]} 
+              value={availableColours.indexOf(pegsOnBoard[currRow-1][colInd])+1}
               onClick={()=>placePeg(currRow, colInd, cursor)}/>
           </td>))
           }
@@ -54,11 +55,21 @@ const Board = ({peg, cursorType, placePeg, checkSelection}) => (
 )
 
 Board.PropTypes = {
+  peg: PropTypes.shape({
+    availableColours: PropTypes.arrayOf(PropTypes.string),
+    target: PropTypes.arrayOf(PropTypes.string),
+    currentRow: PropTypes.string,
+    guessResults: PropTypes.arrayOf(PropTypes.shape({
+      onSpot: PropTypes.number,
+      notOnSpot: PropTypes.number
+    })),
+    currentGuess:PropTypes.arrayOf(PropTypes.string),
+    pegsOnBoard: PropTypes.array,
+    completed: PropTypes.bool
+  }),
   cursorType: PropTypes.string.isRequired,
- // pegsOnBoard: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
   placePeg: PropTypes.func.isRequired,
   checkSelection: PropTypes.func.isRequired,
- // activeRow: PropTypes.number.isRequired
 }
 
 export default Board;

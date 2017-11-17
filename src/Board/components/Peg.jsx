@@ -3,15 +3,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Peg.css';
 
-const Peg = ({onClick, colour}) => (
+const Peg = ({onClick, colour, value}) => (
   <div className={`Peg ${colour}`}
   onClick={onClick}
-  >
-  </div>
+  >{value+1}</div>
 )
 
 Peg.PropTypes = {
   onClick: PropTypes.func.isRequired,
-  colour: PropTypes.string
+  colour: PropTypes.string,
+  value: PropTypes.number
 }
 export default Peg;

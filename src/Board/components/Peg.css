@@ -5,10 +5,14 @@
     background-size: 50px;
     background-repeat: no-repeat;
     background-position: center;
+    line-height: 50px;
+    font-size: x-large;
+    font-style: italic;
 }
 
 .Peg.black {
     background-image: url("../images/blackPeg.png");
+    color: bisque;
 }
 
 .Peg.blue {
