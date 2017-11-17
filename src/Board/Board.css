@@ -3,7 +3,9 @@
     width: auto; 
     height: auto;
     margin: 0px auto;
-    background-color: rosybrown;
+    /* background-color: rosybrown; */
+    border-style: groove;
+    border-width: 5px;
 }
 
 .Board .tr button {

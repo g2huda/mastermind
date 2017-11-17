@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  background-image: url("../Board/images/woods/wood1.jpg");
+  background-image: url("../Board/images/woods/wood2.jpg"); 
+  background-image: url("../Board/images/woods/wood5.jpg"); 
 }
 
 .App-logo {

@@ -1,9 +1,9 @@
-const guessState = {
+/* const guessState = {
     ON_SPOT: 'ON_SPOT',
     NOT_ON_SPOT: 'NOT_ON_SPOT',
     NOT_IN_TARGET: 'NOT_IN_TARGET'
 }
-
+ */
 export const randomPicks = (array, number) => {
     let result = [];
     for(var i = 0; i < number; i++){
@@ -14,32 +14,12 @@ export const randomPicks = (array, number) => {
 }
 
 export const checkResult = (prevState) => {
-    let tempGuess = [...prevState.currentGuess];
-    let tmpTarget = [...prevState.target];
-    let result = [];
-    let val = "";
-    for(let i=0; i < prevState.target.length; i++){
-        val = prevState.target[i];
-        if(tempGuess.includes(val)&&tmpTarget.includes(val)){
-            tempGuess.splice(tempGuess.indexOf(val), 1);
-            tmpTarget.splice(tmpTarget.indexOf(val), 1);
-            if(prevState.target[i] === prevState.currentGuess[i]){
-                result.push(guessState.ON_SPOT);
-            }else{
-                result.push(guessState.NOT_ON_SPOT);
-            }
-        }else{
-            result.push(guessState.NOT_IN_TARGET);
-        }
-    }
-    /* 
-    let result = prevState.target.map((val, ind) => (
-        prevState.currentGuess.includes(val)?(
-            (prevState.target[ind] === prevState.currentGuess[ind]?guessState.ON_SPOT:guessState.NOT_ON_SPOT)):
-            guessState.NOT_IN_TARGET )); */
-    let onSpot = result.filter((value) => value === guessState.ON_SPOT).length;
-    let notOnSpot = result.filter((value) => value === guessState.NOT_ON_SPOT).length;
-    //console.log({onSpot, notOnSpot, prevState.target, prevState.guess})
+    
+    let target = prevState.target;
+    let guess = prevState.currentGuess;
+    let onSpot = target.filter((val, ind) => target[ind]===guess[ind]).length;
+    let notOnSpot = totalNotOnSpot(prevState.target, prevState.currentGuess)-onSpot;
+    console.log({target, guess});
     return  (prevState.currentGuess.includes("")? prevState:
     {...prevState, currentRow: prevState.currentRow+1, 
         currentGuess: resetArray(prevState.currentGuess.length),
@@ -49,6 +29,38 @@ export const checkResult = (prevState) => {
     })
 }
 
+const totalOcurrence = (array) => {
+    let arr = [...array];
+    var prev; 
+    let val = [];
+    let num = [];
+    arr.sort();
+    for(let i =0; i < arr.length; i++){
+        if (arr[i] !== prev){
+            val.push(arr[i]);
+            num.push(1);
+        }else{
+            num[num.length-1]++;
+        }
+        prev = arr[i];
+    }
+    return [val, num];
+}
+
+const totalNotOnSpot = (target, guess) => {
+    let total1 = totalOcurrence(target);
+    let total2 = totalOcurrence(guess);
+    let targetVal = total1[0];
+    let targetNum = total1[1];
+    let guessVal = total2[0];
+    let guessNum = total2[1];
+
+    let result = targetVal.map((val, ind) => guessVal.includes(val)? 
+        Math.min(guessNum[guessVal.indexOf(val)], targetNum[ind]):0 );
+    let add = result.reduce((prev, curr) => prev+curr, 0);
+    return add;
+
+}
 export const place = (prevState, row, col, value) => {
     if(!prevState.availableColours.includes(value)|| prevState.currentRow!==row){
         return prevState
