@@ -1,18 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import BoardContainer from '../Board/BoardContainer';
+import GameOptions from './GameOptions'
 import './Game.css'
 
-const Game = ({startGame, timer}) => (
+const Game = ({settings, startGame, toggleDisplayNumbers}) => (
   <div className="Game">
     <BoardContainer />
-    <button type="submit" onClick={startGame}>NEW GAME</button>
-    <p>TIMER: {timer}</p>
+    <GameOptions settings={settings} 
+    startGame={startGame}
+    toggleDisplayNumbers={toggleDisplayNumbers}
+    />
+    {/* <p>TIMER: {timer}</p> */}
   </div>
 );
 
 Game.PropTypes = {
-  timer: PropTypes.number.isRequired,
+  //timer: PropTypes.number.isRequired,
   startGame: PropTypes.func.isRequired
 }
 export default Game;

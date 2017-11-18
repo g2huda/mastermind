@@ -6,6 +6,7 @@ import {setCursor} from '../../App/Actions/boardActions';
 const mapStateToProps = state => {
     return {
       pegColours: state.peg.availableColours,
+      displayNumbers: state.game.gameSettings.displayNumbers
     }
 }
   

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Game from './Game';
 
+import {startNewGame, toggleDisplayNumbers} from '../App/Actions/gameActions';
 import {resetBoard} from '../App/Actions/boardActions';
-import {setRandomTarget} from '../App/Actions/pegActions';
-import {resetTimer, tick} from '../App/Actions/timerActions';
+import {setRandomTarget, createBoard} from '../App/Actions/pegActions';
 
 import {connect} from 'react-redux';
 
@@ -11,75 +11,69 @@ class GameContainer extends Component {
 
   constructor(props){
     super(props);
-    
+    props.startNewGame();
+    props.resetBoard();
     this.startGame = this.startGame.bind(this);
   }
 
-  componentDidMount(){
-    console.log(this.props);
-    console.log("COMPONENT DID MOUNT");
-    let columns = this.props.board.columns;
-    let rows = this.props.board.rows;
+  componentWillMount(){
+    let columns = this.props.columns;
+    let rows = this.props.rows;
+    this.props.createBoard(columns, rows);
     this.props.setRandomTarget(columns, rows);
-  }
-
-  componentWillUnmount(){
-    clearInterval(this.timerID);
-    console.log("COMPONENT WILL UNMOUNT");
     
-  }
-
- // tick(){
- //   this.setState(prevState => ({timer: prevState.timer+1}));
- // }
-
-  reset(){
-    this.props.resetTimer();
-    this.props.resetBoard();
-    
-    //this.setState({timer: 0});
-    clearInterval(this.timerID);
   }
   
-  startGame(){
-    this.reset();
-    let columns = this.props.board.columns;
-    let rows = this.props.board.rows;
+  componentWillUnmount(){
+    //clearInterval(this.timerID);
+    console.log("COMPONENT WILL UNMOUNT");  
+  }
+  
+ startGame(){
+    //this.reset();//to resetTimer and to clear interval
+    let columns = this.props.columns;
+    let rows = this.props.rows;
+    this.props.resetBoard();
     this.props.setRandomTarget(columns, rows);
     //this.timerID = setInterval(()=>this.props.tick(), 1000);
   }
+  
 
   render() {
     return(
-        <Game 
+        <Game settings={this.props.settings} 
         startGame={this.startGame}
-        timer={this.props.timer}
-        />
+        toggleDisplayNumbers={this.props.toggleDisplayNumbers} />
     );
   }
 }
 
 function mapStateToProps(state){
   return {
-    timer: state.timer,
-    board: state.board,
+    //timer: state.timer,
+    columns: state.board.columns,
+    rows: state.board.rows,
+    settings: state.game.gameSettings
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
+    startNewGame: () => {
+      dispatch(startNewGame())
+    },
+    toggleDisplayNumbers: () => {
+      dispatch(toggleDisplayNumbers())
+    },
     resetBoard: ()=>{
       dispatch(resetBoard())
     },
-   tick: () => {
-     dispatch(tick())
-   },
-   resetTimer: () => {
-     dispatch(resetTimer())
-   },
-   setRandomTarget: (number, totalRows) => {
-     dispatch(setRandomTarget(number, totalRows))
-   }
+    setRandomTarget: (columns, rows) => {
+      dispatch(setRandomTarget(columns, rows))
+    },
+    createBoard: (columns, rows) => {
+      dispatch(createBoard(columns, rows))
+    }
   }
 
 }

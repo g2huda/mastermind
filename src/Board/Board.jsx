@@ -8,7 +8,7 @@ import PegHolderContainer from './components/PegHolderContainer';
 import CheckButton from './components/CheckButton';
 import KeyPegHolder from './components/KeyPegHolder';
 
-const buildBoard = (peg, cursor, placePeg, checkSelection) => {
+const buildBoard = (game, peg, cursor, placePeg, checkSelection) => {
       var {availableColours, pegsOnBoard, currentRow, guessResults, target, completed} = peg;
       
       return pegsOnBoard.map((rowVal, rowInd) => {
@@ -20,7 +20,8 @@ const buildBoard = (peg, cursor, placePeg, checkSelection) => {
           </td>
           {rowVal.map((colVal, colInd) =>(
           <td key={`peg${rowInd}${colInd}`}>
-            <Cell key={`${rowInd}${colInd}`} currentClass={pegsOnBoard[currRow-1][colInd]} 
+            <Cell key={`${rowInd}${colInd}`} currentClass={pegsOnBoard[currRow-1][colInd]}
+              displayVal={game.gameSettings.displayNumbers} 
               value={availableColours.indexOf(pegsOnBoard[currRow-1][colInd])+1}
               onClick={()=>placePeg(currRow, colInd, cursor)}/>
           </td>))
@@ -42,12 +43,12 @@ const buildShield = (target, completed) => (
   </tr>
 )
 
-const Board = ({peg, cursorType, placePeg, checkSelection}) => (
+const Board = ({game, peg, cursorType, placePeg, checkSelection}) => (
   <div className={`Board ${cursorType}`}> 
     <table>
       <tbody>
         {buildShield(peg.target, peg.completed)}
-        {buildBoard(peg, cursorType, placePeg, checkSelection)}
+        {buildBoard(game, peg, cursorType, placePeg, checkSelection)}
       </tbody>
     </table>
     <PegHolderContainer />

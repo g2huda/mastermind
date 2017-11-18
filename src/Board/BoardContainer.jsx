@@ -2,22 +2,14 @@ import React, { Component } from 'react';
 
 import Board from './Board';
 import {connect} from 'react-redux';
-//import {resetBoard} from '../App/Actions/boardActions';
-import {createBoard, placePeg, checkSelection} from '../App/Actions/pegActions';
+import {placePeg, checkSelection} from '../App/Actions/pegActions';
 
 class BoardContainer extends Component {
-  constructor(props){
-    super(props);
-    props.createBoard(props.board.columns, props.board.rows);
-    console.log(props.peg.guessResults)
-  }
-
-  componentDidMount(){
-    console.log("board should be created");
-  }
+  
   render(){
     return (
-      <Board peg={this.props.peg}
+      <Board game={this.props.game} 
+        peg={this.props.peg}
         cursorType={this.props.board.cursorType}
         placePeg={this.props.placePeg} 
         checkSelection={this.props.checkSelection}
@@ -28,6 +20,7 @@ class BoardContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    game: state.game,
     board: state.board,
     peg: state.peg,
   }
@@ -40,9 +33,6 @@ const mapDispatchToProps = dispatch => {
     },
     checkSelection: () => {
       dispatch(checkSelection())
-    },
-    createBoard: (rows, cols) => {
-      dispatch(createBoard(rows, cols))
     }
   }
 
