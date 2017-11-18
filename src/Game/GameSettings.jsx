@@ -4,7 +4,8 @@ import PropTypes from 'prop-types'
 import GameSettingsFactory from './GameSettingsFactory'
 
 const GameSettings = ({gameSettings}) => (
-    <form>
+    <form className="GameSettings">
+        <header> Game Settings </header>
         {gameSettings.settings.options.map((setting, ind) => 
           GameSettingsFactory.build({...gameSettings, value: setting, key:setting}))}
     </form>

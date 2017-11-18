@@ -1,3 +1,22 @@
 .Game {
-    display: inline-grid;
+    
+}
+
+.GameSettings {
+    border-radius: 5px;
+    border-style: groove;
+    border-width: 5px;
+    padding: 20px;
+    position: absolute;
+    top: 225px;
+    left: 130px;
+}
+
+.GameSettings header {
+    font-size: xx-large;
+    padding-bottom: 15px;
+}
+
+.GameSettings * {
+    margin: 7px;
 }

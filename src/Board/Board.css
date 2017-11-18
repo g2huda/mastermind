@@ -1,5 +1,5 @@
 .Board {
-    display: block;
+    display: inline-grid;
     width: auto; 
     height: auto;
     margin: 0px auto;
