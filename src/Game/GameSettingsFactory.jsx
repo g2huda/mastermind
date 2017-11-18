@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { START_NEW_GAME, TOGGLE_DISPLAY_NUMBERS, GIVE_UP} from '../App/Actions/gameActions';
 
 import NewGameButton from './components/NewGameButton';
@@ -22,5 +23,19 @@ class GameSettingsFactory {
         }
     }
 }
+
+GameSettingsFactory.PropTypes = {
+    data: PropTypes.shape({
+      startNewGame: PropTypes.func,
+      toggleDisplayNumbers: PropTypes.func.isRequired,
+      loseGame: PropTypes.func.isRequired,
+      startGame: PropTypes.func.isRequired,
+      settings: PropTypes.shape({
+        displayNumbers: PropTypes.bool.isRequired,
+        options: PropTypes.arrayOf(PropTypes.string)
+      }) 
+    })
+  }
+  
 
 export default GameSettingsFactory;

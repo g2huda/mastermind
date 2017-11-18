@@ -14,11 +14,11 @@ const GameSettings = ({gameSettings}) => (
 GameSettings.PropTypes = {
   gameSettings: PropTypes.shape({
     startNewGame: PropTypes.func,
-    toggleDisplayNumbers: PropTypes.func.isRequired,
-    loseGame: PropTypes.func.isRequired,
-    startGame: PropTypes.func.isRequired,
+    toggleDisplayNumbers: PropTypes.func,
+    loseGame: PropTypes.func,
+    startGame: PropTypes.func,
     settings: PropTypes.shape({
-      toggleDisplayNumbers: PropTypes.bool.isRequired,
+      displayNumbers: PropTypes.bool,
       options: PropTypes.arrayOf(PropTypes.string).isRequired 
     }) 
   })
