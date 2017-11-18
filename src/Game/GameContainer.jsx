@@ -45,11 +45,11 @@ class GameContainer extends Component {
 
   render() {
     return(
-        <Game /* settings={this.props.settings} */ 
-        /* startGame={this.startGame} */
-        gameSettings={{...this.props.gameSettingsFunctions, 
+        <Game gameSettings={{...this.props.gameSettingsFunctions, 
           startGame:this.startGame, 
-        settings: this.props.settings}} />
+          settings: this.props.game.gameSettings,
+          totalWon: this.props.game.totalWon,
+          totalLost: this.props.game.totalLost}} />
     );
   }
 }
@@ -59,7 +59,7 @@ function mapStateToProps(state){
     //timer: state.timer,
     columns: state.board.columns,
     rows: state.board.rows,
-    settings: state.game.gameSettings
+    game: state.game
   }
 }
 

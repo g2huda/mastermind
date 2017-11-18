@@ -19,4 +19,5 @@
 
 .GameSettings * {
     margin: 7px;
+    display: -webkit-box;
 }

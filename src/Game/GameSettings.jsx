@@ -8,6 +8,8 @@ const GameSettings = ({gameSettings}) => (
         <header> Game Settings </header>
         {gameSettings.settings.options.map((setting, ind) => 
           GameSettingsFactory.build({...gameSettings, value: setting, key:setting}))}
+        Total wins: {gameSettings.totalWon} <br/>
+        total Lost: {gameSettings.totalLost}
     </form>
 )
 
@@ -20,7 +22,9 @@ GameSettings.PropTypes = {
     settings: PropTypes.shape({
       displayNumbers: PropTypes.bool,
       options: PropTypes.arrayOf(PropTypes.string).isRequired 
-    }) 
+    }),
+    totalWon: PropTypes.number.isRequired,
+    totalLost: PropTypes.number.isRequired 
   })
 }
 export default GameSettings
