@@ -2,6 +2,7 @@ export const START_NEW_GAME = 'START_NEW_GAME';
 export const WIN = 'WIN';
 export const LOSE = 'LOSE';
 export const TOGGLE_DISPLAY_NUMBERS = 'TOGGLE_DISPLAY_NUMBERS';
+export const GIVE_UP = 'GIVE_UP';
 
 export const startNewGame = () => {
     return {
@@ -9,13 +10,13 @@ export const startNewGame = () => {
     }
 }
 
-export const win = () => {
+export const winGame = () => {
     return {
         type: WIN
     }
 }
 
-export const lose = () => {
+export const loseGame = () => {
     return {
         type: LOSE
     }

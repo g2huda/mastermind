@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Game from './Game';
 
-import {startNewGame, toggleDisplayNumbers} from '../App/Actions/gameActions';
+import {startNewGame, toggleDisplayNumbers, loseGame} from '../App/Actions/gameActions';
 import {resetBoard} from '../App/Actions/boardActions';
 import {setRandomTarget, createBoard} from '../App/Actions/pegActions';
 
@@ -11,9 +11,10 @@ class GameContainer extends Component {
 
   constructor(props){
     super(props);
-    props.startNewGame();
+    props.gameSettingsFunctions.startNewGame();
     props.resetBoard();
     this.startGame = this.startGame.bind(this);
+    console.log("CONTRUCTOR")
   }
 
   componentWillMount(){
@@ -21,6 +22,7 @@ class GameContainer extends Component {
     let rows = this.props.rows;
     this.props.createBoard(columns, rows);
     this.props.setRandomTarget(columns, rows);
+    console.log("COMPONENT WILL MOUNT");
     
   }
   
@@ -31,19 +33,23 @@ class GameContainer extends Component {
   
  startGame(){
     //this.reset();//to resetTimer and to clear interval
+    this.props.gameSettingsFunctions.startNewGame();
     let columns = this.props.columns;
     let rows = this.props.rows;
     this.props.resetBoard();
     this.props.setRandomTarget(columns, rows);
     //this.timerID = setInterval(()=>this.props.tick(), 1000);
+    console.log("GAME IS STARTING");
   }
   
 
   render() {
     return(
-        <Game settings={this.props.settings} 
-        startGame={this.startGame}
-        toggleDisplayNumbers={this.props.toggleDisplayNumbers} />
+        <Game /* settings={this.props.settings} */ 
+        /* startGame={this.startGame} */
+        gameSettings={{...this.props.gameSettingsFunctions, 
+          startGame:this.startGame, 
+        settings: this.props.settings}} />
     );
   }
 }
@@ -59,12 +65,18 @@ function mapStateToProps(state){
 
 const mapDispatchToProps = dispatch => {
   return {
-    startNewGame: () => {
-      dispatch(startNewGame())
+    gameSettingsFunctions: {
+      startNewGame: () => {
+        dispatch(startNewGame())
+      },
+      toggleDisplayNumbers: () => {
+        dispatch(toggleDisplayNumbers())
+      },
+      loseGame: () => {
+        dispatch(loseGame())
+      }
     },
-    toggleDisplayNumbers: () => {
-      dispatch(toggleDisplayNumbers())
-    },
+    
     resetBoard: ()=>{
       dispatch(resetBoard())
     },

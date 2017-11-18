@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import BoardContainer from '../Board/BoardContainer';
-import GameOptions from './GameOptions'
+import GameSettings from './GameSettings'
 import './Game.css'
 
-const Game = ({settings, startGame, toggleDisplayNumbers}) => (
+const Game = ({/*settings, startGame, toggleDisplayNumbers*/ gameSettings}) => (
   <div className="Game">
     <BoardContainer />
-    <GameOptions settings={settings} 
+    <GameSettings gameSettings={gameSettings}/* settings={settings} 
     startGame={startGame}
-    toggleDisplayNumbers={toggleDisplayNumbers}
+    toggleDisplayNumbers={toggleDisplayNumbers} */
     />
     {/* <p>TIMER: {timer}</p> */}
   </div>
