@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Board.css';
 
-//import Shield from './components/Shield'
 import Cell from './components/Cell';
 import PegHolderContainer from './components/PegHolderContainer';
 import CheckButton from './components/CheckButton';
 import KeyPegHolder from './components/KeyPegHolder';
+import Shield from './components/Shield';
 
 const buildBoard = (game, peg, cursor, placePeg, checkSelection) => {
       var {availableColours, pegsOnBoard, currentRow, guessResults, target, completed} = peg;
@@ -34,20 +34,11 @@ const buildBoard = (game, peg, cursor, placePeg, checkSelection) => {
       )})
 }
 
-const buildShield = (target, completed) => (
-  <tr>
-    {target.map((val, ind) => (<td key={`Sheild${ind}`} className="ShieldCol">
-      <Cell key={`Sheild${ind}`} currentClass={completed?val:"Shield"} />
-      </td>
-    ))}
-  </tr>
-)
-
 const Board = ({game, peg, cursorType, placePeg, checkSelection}) => (
   <div className={`Board ${cursorType}`}> 
     <table>
       <tbody>
-        {buildShield(peg.target, peg.completed)}
+        <Shield target={peg.target} gameOver={game.gameOver} />
         {buildBoard(game, peg, cursorType, placePeg, checkSelection)}
       </tbody>
     </table>

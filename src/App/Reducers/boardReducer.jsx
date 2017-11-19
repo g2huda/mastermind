@@ -1,7 +1,7 @@
 import {RESET_BOARD, SET_CURSOR} from '../Actions/boardActions'
 
 const initialState = {
-    rows: 4,
+    rows: 12,
     columns: 4,
     cursorType: 'default'
 }
