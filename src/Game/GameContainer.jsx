@@ -14,12 +14,9 @@ class GameContainer extends Component {
     props.gameSettingsFunctions.startNewGame();
     props.resetBoard();
     this.startGame = this.startGame.bind(this);
-    console.log("CONTRUCTOR")
   }
 
   componentWillReceiveProps(nextprops){
-    console.log("THERE ARE THE PROPS");
-    console.log(nextprops);
     if(nextprops !== this.props){
       let {rows, columns, guessResults} = nextprops;
       if (guessResults[this.props.currentRow -1].onSpot === columns){
@@ -37,8 +34,6 @@ class GameContainer extends Component {
     let rows = this.props.rows;
     this.props.createBoard(columns, rows);
     this.props.setRandomTarget(columns, rows);
-    console.log("COMPONENT WILL MOUNT");
-    
   }
   
   componentWillUnmount(){
@@ -54,7 +49,6 @@ class GameContainer extends Component {
     this.props.resetBoard();
     this.props.setRandomTarget(columns, rows);
     //this.timerID = setInterval(()=>this.props.tick(), 1000);
-    console.log("GAME IS STARTING");
   }
   
 
@@ -71,7 +65,6 @@ class GameContainer extends Component {
 
 function mapStateToProps(state){
   return {
-    //timer: state.timer,
     columns: state.board.columns,
     rows: state.board.rows,
     game: state.game,

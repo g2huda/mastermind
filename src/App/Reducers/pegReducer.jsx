@@ -8,8 +8,7 @@ const initialState = {
     guessResults: resetArray(12, {onSpot:0, notOnSpot:0}),
     currentGuess:[],
     pegsOnBoard: [],
-    totalGuesses: 0,
-    completed: false
+    totalGuesses: 0
 }
 
 const peg = (prevState = initialState, action) => {
@@ -20,8 +19,6 @@ const peg = (prevState = initialState, action) => {
                 currentGuess:initialRow,
                 pegsOnBoard: resetArray(action.rows, initialRow),
                 totalGuesses: action.rows
-                //guessResults: resetArray(action.rows, {onSpot:0, notOnSpot:0})
-               // keyPegs: resetArray(initialRow)
             }
         case SET_RANDOM_TARGET: 
             var initialNum = resetArray(action.number);
@@ -41,7 +38,6 @@ const peg = (prevState = initialState, action) => {
 
 checkResult.PropTypes = {
     state: PropTypes.arrayOf(PropTypes.shape({
-        //isValid: PropTypes.bool.isRequired,
         onSpot: PropTypes.number,
         notOnSpot: PropTypes.number
     })).isRequired,

@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const CheckButton = ({currRow, activeRow, checkSelection, completed}) => (
+const CheckButton = ({currRow, activeRow, checkSelection, gameOver}) => (
     <td className="checkButton">
-    {currRow===activeRow && !completed?
+    {currRow===activeRow && !gameOver?
       <button onClick={checkSelection} type="button">
         CHECK
       </button>:null}

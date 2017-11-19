@@ -1,9 +1,3 @@
-/* const guessState = {
-    ON_SPOT: 'ON_SPOT',
-    NOT_ON_SPOT: 'NOT_ON_SPOT',
-    NOT_IN_TARGET: 'NOT_IN_TARGET'
-}
- */
 export const randomPicks = (array, number) => {
     let result = [];
     for(var i = 0; i < number; i++){
@@ -24,8 +18,7 @@ export const checkResult = (prevState) => {
     {...prevState, currentRow: prevState.currentRow+1, 
         currentGuess: resetArray(prevState.currentGuess.length),
         guessResults: prevState.guessResults.map((result, resultInd) => (
-            resultInd===prevState.currentRow-1? {...result, onSpot, notOnSpot}: result)),
-        completed: onSpot === prevState.target.length
+            resultInd===prevState.currentRow-1? {...result, onSpot, notOnSpot}: result))
     })
 }
 
@@ -76,12 +69,3 @@ export const place = (prevState, row, col, value) => {
 export const resetArray = (number, object="") => {
     return Array(number).fill(object);
 }
-
-//todos:
-/*
--colour contrasts 4.5:1
--peg colours
--peg colours 
--no timer
--
-*/
