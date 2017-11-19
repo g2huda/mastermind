@@ -8,6 +8,7 @@ const initialState = {
     guessResults: resetArray(12, {onSpot:0, notOnSpot:0}),
     currentGuess:[],
     pegsOnBoard: [],
+    totalGuesses: 0,
     completed: false
 }
 
@@ -18,6 +19,7 @@ const peg = (prevState = initialState, action) => {
             return {...initialState, 
                 currentGuess:initialRow,
                 pegsOnBoard: resetArray(action.rows, initialRow),
+                totalGuesses: action.rows
                 //guessResults: resetArray(action.rows, {onSpot:0, notOnSpot:0})
                // keyPegs: resetArray(initialRow)
             }

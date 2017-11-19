@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Game from './Game';
 
-import {startNewGame, toggleDisplayNumbers, loseGame} from '../App/Actions/gameActions';
+import {startNewGame, toggleDisplayNumbers, loseGame, winGame} from '../App/Actions/gameActions';
 import {resetBoard} from '../App/Actions/boardActions';
 import {setRandomTarget, createBoard} from '../App/Actions/pegActions';
 
@@ -15,6 +15,21 @@ class GameContainer extends Component {
     props.resetBoard();
     this.startGame = this.startGame.bind(this);
     console.log("CONTRUCTOR")
+  }
+
+  componentWillReceiveProps(nextprops){
+    console.log("THERE ARE THE PROPS");
+    console.log(nextprops);
+    if(nextprops !== this.props){
+      let {rows, columns, guessResults} = nextprops;
+      if (guessResults[this.props.currentRow -1].onSpot === columns){
+        this.props.gameSettingsFunctions.winGame();
+        alert("YOU WIN :)");
+      } else if(this.props.currentRow === rows){
+        this.props.gameSettingsFunctions.loseGame();
+        alert("YOU LOST :(");
+      }  
+    }
   }
 
   componentWillMount(){
@@ -59,7 +74,9 @@ function mapStateToProps(state){
     //timer: state.timer,
     columns: state.board.columns,
     rows: state.board.rows,
-    game: state.game
+    game: state.game,
+    currentRow: state.peg.currentRow,
+    guessResults: state.peg.guessResults
   }
 }
 
@@ -74,6 +91,9 @@ const mapDispatchToProps = dispatch => {
       },
       loseGame: () => {
         dispatch(loseGame())
+      },
+      winGame: () => {
+        dispatch(winGame())
       }
     },
     

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 const CheckButton = ({currRow, activeRow, checkSelection, completed}) => (
     <td className="checkButton">
     {currRow===activeRow && !completed?
-      <button onClick={checkSelection} type="submit">
+      <button onClick={checkSelection} type="button">
         CHECK
       </button>:null}
     </td>

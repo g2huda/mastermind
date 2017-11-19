@@ -21,7 +21,7 @@ const buildBoard = (game, peg, cursor, placePeg, checkSelection) => {
           {rowVal.map((colVal, colInd) =>(
           <td key={`peg${rowInd}${colInd}`}>
             <Cell key={`${rowInd}${colInd}`} currentClass={pegsOnBoard[currRow-1][colInd]}
-              displayVal={game.gameSettings.displayNumbers} 
+              displayVal={game.displayNumbers} 
               value={availableColours.indexOf(pegsOnBoard[currRow-1][colInd])+1}
               onClick={()=>placePeg(currRow, colInd, cursor)}/>
           </td>))
