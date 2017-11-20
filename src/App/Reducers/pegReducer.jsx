@@ -14,7 +14,7 @@ const initialState = {
     ],
     target: [],
     currentRow: 1,
-    guessResults: resetArray(4, {onSpot:0, notOnSpot:0}),
+    guessResults: resetArray(12, {onSpot:0, notOnSpot:0}),
     currentGuess:[],
     pegsOnBoard: [],
     //totalGuesses: 0
