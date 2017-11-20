@@ -24,19 +24,19 @@ export const checkResult = (prevState) => {
 }
 
 const totalOcurrence = (array) => {
-    let arr = [...array];
+    let arr = array.map((val, ind) => val.colour);
     var prev; 
     let val = [];
     let num = [];
     arr.sort();
     for(let i =0; i < arr.length; i++){
-        if (arr[i].colour !== prev){
-            val.push(arr[i].colour);
+        if (arr[i] !== prev){
+            val.push(arr[i]);
             num.push(1);
         }else{
             num[num.length-1]++;
         }
-        prev = arr[i].colour;
+        prev = arr[i];
     }
     return [val, num];
 }
