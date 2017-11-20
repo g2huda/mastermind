@@ -11,11 +11,12 @@ export const checkResult = (prevState) => {
     
     let target = prevState.target;
     let guess = prevState.currentGuess;
-    let onSpot = target.filter((val, ind) => target[ind]===guess[ind]).length;
+    let onSpot = target.filter((val, ind) => target[ind].colour===guess[ind].colour).length;
     let notOnSpot = totalNotOnSpot(prevState.target, prevState.currentGuess)-onSpot;
     console.log({target, guess});
     return  (prevState.currentGuess.includes("")? prevState:
-    {...prevState, currentRow: prevState.currentRow+1, 
+    {...prevState, 
+        currentRow: prevState.currentRow+1, 
         currentGuess: resetArray(prevState.currentGuess.length),
         guessResults: prevState.guessResults.map((result, resultInd) => (
             resultInd===prevState.currentRow-1? {...result, onSpot, notOnSpot}: result))
@@ -29,13 +30,13 @@ const totalOcurrence = (array) => {
     let num = [];
     arr.sort();
     for(let i =0; i < arr.length; i++){
-        if (arr[i] !== prev){
-            val.push(arr[i]);
+        if (arr[i].colour !== prev){
+            val.push(arr[i].colour);
             num.push(1);
         }else{
             num[num.length-1]++;
         }
-        prev = arr[i];
+        prev = arr[i].colour;
     }
     return [val, num];
 }

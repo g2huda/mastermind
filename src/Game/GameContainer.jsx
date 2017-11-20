@@ -19,7 +19,7 @@ class GameContainer extends Component {
   componentWillReceiveProps(nextprops){
     if(nextprops !== this.props){
       let {rows, columns, guessResults} = nextprops;
-      if (guessResults[this.props.currentRow -1].onSpot === columns){
+      if (guessResults[this.props.currentRow -1] && guessResults[this.props.currentRow -1].onSpot === columns){
         this.props.gameSettingsFunctions.winGame();
         alert("YOU WIN :)");
       } else if(this.props.currentRow === rows){
