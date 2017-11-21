@@ -2,15 +2,14 @@ import React, { Component } from 'react';
 
 import Board from './Board';
 import {connect} from 'react-redux';
-import {placePeg, checkSelection} from '../App/Actions/pegActions';
-import {setCursor} from '../App/Actions/boardActions'
+import {placePeg, checkSelection, setCursor} from '../App/Actions/pegActions';
 
 class BoardContainer extends Component {
   
   render(){
     return (
       <Board 
-        game={{...this.props.gameState, cursorType: this.props.board.cursorType}} 
+        game={{...this.props.gameState, cursorType: this.props.peg.cursorType}} 
         peg={{...this.props.peg, 
           onPegClick:this.props.onPegClick,
           placePeg: this.props.placePeg,
@@ -26,7 +25,6 @@ const mapStateToProps = (state) => {
       gameOver: state.game.gameOver,
       displayNumbers: state.game.gameSettings.displayNumbers
     },
-    board: state.board,
     peg: state.peg,
   }
 }

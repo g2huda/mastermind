@@ -4,10 +4,8 @@ import './Board.css';
 import './components/PegHolder.css';
 
 import Cell from './components/Cell';
-//import PegHolderContainer from './components/PegHolderContainer';
 import CheckButton from './components/CheckButton';
 import KeyPegHolder from './components/KeyPegHolder';
-//import Shield from './components/Shield';
 import RowFactory,{SHIELD, PEG_HOLDER, BOARD} from './components/RowFactory'
 
 const buildBoard = (game, peg, cursor, placePeg, checkSelection) => {

@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types'
-import {CREATE_BOARD, SET_RANDOM_TARGET, PLACE_PEG, CHECK_SELECTION} from '../Actions/pegActions'
+import {CREATE_BOARD, PLACE_PEG, CHECK_SELECTION, SET_CURSOR} from '../Actions/pegActions'
 import {resetArray, randomPicks, place, checkResult} from '../helperFunctions'
 const initialState = {
+    rows: 12,
+    columns: 4,
+    cursorType: 'default',
     availableColours: [
         {colour: 'black', index: 1}, 
         {colour: 'blue', index: 2}, 
@@ -25,21 +28,19 @@ const peg = (prevState = initialState, action) => {
         case CREATE_BOARD:
             let initialRow = resetArray(action.columns);
             return {...initialState, 
+                rows: action.rows,
+                columns: action.columns,
+                target: randomPicks(initialState.availableColours, action.columns),
                 currentGuess:initialRow,
                 pegsOnBoard: resetArray(action.rows, initialRow),
                // totalGuesses: action.rows
-            }
-        case SET_RANDOM_TARGET: 
-            var initialNum = resetArray(action.number);
-            return Object.assign({}, initialState, {
-                target: randomPicks(initialState.availableColours, action.number),
-                currentGuess: initialNum,
-                pegsOnBoard: resetArray(action.totalRows, initialNum)
-            }) 
+            } 
         case PLACE_PEG:
             return place(prevState, action.row, action.col, action.value)
         case CHECK_SELECTION:
             return checkResult(prevState)
+        case SET_CURSOR:
+            return Object.assign({}, prevState, {cursorType: action.cursorType})
         default:
             return prevState
     }

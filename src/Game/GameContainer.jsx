@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import Game from './Game';
 
 import {startNewGame, toggleDisplayNumbers, loseGame, winGame} from '../App/Actions/gameActions';
-import {resetBoard} from '../App/Actions/boardActions';
-import {setRandomTarget, createBoard} from '../App/Actions/pegActions';
+import {createBoard} from '../App/Actions/pegActions';
 
 import {connect} from 'react-redux';
 
@@ -12,7 +11,6 @@ class GameContainer extends Component {
   constructor(props){
     super(props);
     props.gameSettingsFunctions.startNewGame();
-    props.resetBoard();
     this.startGame = this.startGame.bind(this);
   }
 
@@ -30,10 +28,7 @@ class GameContainer extends Component {
   }
 
   componentWillMount(){
-    let columns = this.props.columns;
-    let rows = this.props.rows;
-    this.props.createBoard(columns, rows);
-    this.props.setRandomTarget(columns, rows);
+    this.props.createBoard(4, 12);
   }
   
   componentWillUnmount(){
@@ -44,10 +39,7 @@ class GameContainer extends Component {
  startGame(){
     //this.reset();//to resetTimer and to clear interval
     this.props.gameSettingsFunctions.startNewGame();
-    let columns = this.props.columns;
-    let rows = this.props.rows;
-    this.props.resetBoard();
-    this.props.setRandomTarget(columns, rows);
+    this.props.createBoard(4, 12);
     //this.timerID = setInterval(()=>this.props.tick(), 1000);
   }
   
@@ -65,8 +57,8 @@ class GameContainer extends Component {
 
 function mapStateToProps(state){
   return {
-    columns: state.board.columns,
-    rows: state.board.rows,
+    rows: state.peg.rows,
+    columns: state.peg.columns,
     game: state.game,
     currentRow: state.peg.currentRow,
     guessResults: state.peg.guessResults
@@ -88,13 +80,6 @@ const mapDispatchToProps = dispatch => {
       winGame: () => {
         dispatch(winGame())
       }
-    },
-    
-    resetBoard: ()=>{
-      dispatch(resetBoard())
-    },
-    setRandomTarget: (columns, rows) => {
-      dispatch(setRandomTarget(columns, rows))
     },
     createBoard: (columns, rows) => {
       dispatch(createBoard(columns, rows))
