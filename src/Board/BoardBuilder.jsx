@@ -1,21 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Board.css';
-import './components/PegHolder.css';
 
 import Shield from './components/Shield'
 import PegHolder from './components/PegHolder'
 import Board from './Board'
 
-const BoardBuilder = ({game, peg}) => (
-  <div className={`Board ${game.cursorType.colour}`}> 
+const BoardBuilder = ({shield, board, boardDispatch, pegHolder, pegHolderDispatch}) => (
+  <div className={`Board ${board.cursorType.colour}`}> 
     <table>
       <tbody>
-        <Shield values={peg.target} gameOver={game.gameOver} displayNumbers={game.displayNumbers} />
-        <Board {...peg} {...game} />
+        <Shield {...shield} />
+        <Board {...board} {...boardDispatch} />
       </tbody>
     </table>
-    <PegHolder values={peg.availableColours} displayNumbers={game.displayNumbers} onPegClick={peg.onPegClick} />
+    <PegHolder {...pegHolder} {...pegHolderDispatch} />
   </div>
 )
 

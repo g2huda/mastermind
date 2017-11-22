@@ -6,8 +6,7 @@ import './Game.css'
 const Game = ({gameSettings}) => (
   <div className="Game">
     <BoardContainer />
-    <GameSettings gameSettings={gameSettings}
-    />
+    <GameSettings gameSettings={gameSettings} />
     {/* <p>TIMER: {timer}</p> */}
   </div>
 );

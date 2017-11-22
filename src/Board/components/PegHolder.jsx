@@ -1,5 +1,6 @@
 import React from 'react'
 import CellFactory, {PEG_HOLDER} from './CellFactory'
+import './PegHolder.css'
 
 const PegHolder = ({values, displayNumbers, onPegClick}) => (
     <div className="PegHolder">

@@ -8,40 +8,52 @@ class BoardContainer extends Component {
   
   render(){
     return (
-      <BoardBuilder 
-        game={{...this.props.gameState, cursorType: this.props.peg.cursorType}} 
-        peg={{...this.props.peg, 
-          onPegClick:this.props.onPegClick,
-          placePeg: this.props.placePeg,
-          checkSelection: this.props.checkSelection}}
-      />
+      <BoardBuilder shield={this.props.shield} 
+      board={this.props.board} boardDispatch={this.props.boardDispatch}
+      pegHolder={this.props.pegHolder} pegHolderDispatch={this.props.pegHolderDispatch} />
     )
   }
 } 
 
 const mapStateToProps = (state) => {
   return {
-    gameState: {
-      gameOver: state.game.gameOver,
+    shield: {
+      values: state.peg.target,
+      gameOver: state.game.gameOver, 
       displayNumbers: state.game.gameSettings.displayNumbers
     },
-    peg: state.peg,
+    board: {
+      gameOver: state.game.gameOver, 
+      pegsOnBoard: state.peg.pegsOnBoard, 
+      currentRow: state.peg.currentRow, 
+      guessResults: state.peg.guessResults, 
+      target: state.peg.target, 
+      cursorType: state.peg.cursorType,
+      displayNumbers: state.game.gameSettings.displayNumbers
+    },
+    pegHolder: {
+      values: state.peg.availableColours, 
+      displayNumbers:state.game.gameSettings.displayNumbers 
+    }
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onPegClick: peg => {
-      dispatch(setCursor(peg))
+    boardDispatch: {
+      placePeg: (row, col, value) => {
+        dispatch(placePeg(row, col, value))
+      }, 
+      checkSelection: () => {
+        dispatch(checkSelection())
+      } 
     },
-    placePeg: (row, col, value)=>{
-      dispatch(placePeg(row, col, value))
-    },
-    checkSelection: () => {
-      dispatch(checkSelection())
+    pegHolderDispatch: {
+      onPegClick: peg => {
+        dispatch(setCursor(peg))
+      }
     }
   }
-
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BoardContainer)
