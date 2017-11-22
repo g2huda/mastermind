@@ -2,16 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Cell.css';
 
-const Cell = ({currentClass, displayNumbers, index, onClick}) => (
-  <div className={currentClass} onClick={onClick}>
-  {index>0&&displayNumbers?index:""}
+const Cell = ({currentClass, colour, displayNumbers, onClick}) => (
+  <div className={`${currentClass} ${colour.colour}`} onClick={onClick}>
+  {colour.index>0&&displayNumbers?colour.index:""}
   </div>
 )
 
 Cell.PropTypes = {
-  currentClass: PropTypes.string.required,
-  value: PropTypes.number,
-  onClick: PropTypes.func.required
+  currentClass: PropTypes.string.isRequired,
+  colour: PropTypes.shape({
+    colour: PropTypes.string.isRequired,
+    index: PropTypes.number.isRequired
+  }),
+  onClick: PropTypes.func.isRequired
 }
 
 export default Cell;

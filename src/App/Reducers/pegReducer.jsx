@@ -16,7 +16,7 @@ const initialState = {
         {colour: 'white', index: 8}
     ],
     target: [],
-    currentRow: 1,
+    currentRow: 12,
     guessResults: resetArray(12, {onSpot:0, notOnSpot:0}),
     currentGuess:[],
     pegsOnBoard: [],
@@ -30,6 +30,7 @@ const peg = (prevState = initialState, action) => {
             return {...initialState, 
                 rows: action.rows,
                 columns: action.columns,
+                currentRow: action.rows,
                 target: randomPicks(initialState.availableColours, action.columns),
                 currentGuess:initialRow,
                 pegsOnBoard: resetArray(action.rows, initialRow),

@@ -14,9 +14,10 @@ class RowFactory {
                     <tr>
                     {data.row.map((val, ind) => (<td key={`Sheild${ind}`} className="ShieldCol">
                         <Cell key={`Sheild${ind}`} 
-                        currentClass={data.gameOver?`Cell ${val.colour}`:"Cell Shield"}
-                        displayNumbers={data.gameOver?data.displayNumbers:false}
-                        index={val.index} />
+                        currentClass={data.gameOver?"Cell":"Cell Shield"}
+                        colour={data.gameOver?val: ""}
+                        displayNumbers={data.displayNumbers}
+                        />
                         </td>
                     ))}
                 </tr>
@@ -26,9 +27,9 @@ class RowFactory {
                 <div className="PegHolder">
                     {data.row.map((colour, index) => (
                         <Cell key={index}
-                        currentClass={`Peg ${colour.colour}`}
+                        currentClass="Peg"
+                        colour={colour}
                         displayNumbers={data.displayNumbers}
-                        index={colour.index}
                         onClick={() => data.onPegClick(colour)}/>
                       ))}
                     </div>

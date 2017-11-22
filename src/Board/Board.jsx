@@ -3,31 +3,32 @@ import PropTypes from 'prop-types';
 import './Board.css';
 import './components/PegHolder.css';
 
+import Shield from './components/Shield'
+import PegHolder from './components/PegHolder'
 import Cell from './components/Cell';
 import CheckButton from './components/CheckButton';
 import KeyPegHolder from './components/KeyPegHolder';
-import RowFactory,{SHIELD, PEG_HOLDER, BOARD} from './components/RowFactory'
+//import RowFactory,{BOARD} from './components/RowFactory'
 
 const buildBoard = (game, peg, cursor, placePeg, checkSelection) => {
-      var {availableColours, pegsOnBoard, currentRow, guessResults, target} = peg;
+      var {pegsOnBoard, currentRow, guessResults, target} = peg;
       
       return pegsOnBoard.map((rowVal, rowInd) => {
-        let currRow = pegsOnBoard.length-rowInd;
         return (
           //{RowFactory.build({type:BOARD, rowInd:rowInd, keyPegs: target, guessResult={guessResults[currRow-1]}})}
         <tr key={`board${rowInd}`}>
           <td>
-            <KeyPegHolder key={`keyPegHolder${rowInd}`} keyPegs={target} guessResult={guessResults[currRow-1]}/>
+            <KeyPegHolder key={`keyPegHolder${rowInd}`} keyPegs={target} guessResult={guessResults[rowInd]}/>
           </td>
           {rowVal.map((colVal, colInd) =>(
           <td key={`peg${rowInd}${colInd}`}>
-            <Cell key={`${rowInd}${colInd}`} currentClass={`Cell ${pegsOnBoard[currRow-1][colInd].colour}`}
+            <Cell key={`${rowInd}${colInd}`} currentClass="Cell"
+              colour={colVal}
               displayNumbers={game.displayNumbers} 
-              index={availableColours.indexOf(pegsOnBoard[currRow-1][colInd])+1}
-              onClick={()=>placePeg(currRow, colInd, cursor)}/>
+              onClick={()=>placePeg(rowInd, colInd, cursor)}/>
           </td>))
           }
-          <CheckButton key={rowInd} currRow={currRow} 
+          <CheckButton key={rowInd} currRow={rowInd+1} 
           activeRow={currentRow} 
           checkSelection={checkSelection}
           gameOver={game.gameOver}/>
@@ -39,15 +40,11 @@ const Board = ({game, peg}) => (
   <div className={`Board ${game.cursorType.colour}`}> 
     <table>
       <tbody>
-        {/* <Shield target={peg.target} gameOver={game.gameOver} /> */}
-        {RowFactory.build({type: SHIELD, 
-          row: peg.target, gameOver: game.gameOver, displayNumbers:game.displayNumbers})}
+        <Shield values={peg.target} gameOver={game.gameOver} displayNumbers={game.displayNumbers} />
         {buildBoard(game, peg, game.cursorType, peg.placePeg, peg.checkSelection)}
       </tbody>
     </table>
-    {RowFactory.build({type:PEG_HOLDER, 
-      displayNumbers:game.displayNumbers, row:peg.availableColours, onPegClick:peg.onPegClick})}
-    {/* <PegHolderContainer /> */}
+    <PegHolder values={peg.availableColours} displayNumbers={game.displayNumbers} onPegClick={peg.onPegClick} />
   </div>
 )
 

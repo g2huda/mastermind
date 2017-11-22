@@ -14,13 +14,14 @@ class GameContainer extends Component {
     this.startGame = this.startGame.bind(this);
   }
 
-  componentWillReceiveProps(nextprops){
-    if(nextprops !== this.props){
-      let {rows, columns, guessResults} = nextprops;
-      if (guessResults[this.props.currentRow -1] && guessResults[this.props.currentRow -1].onSpot === columns){
+  componentWillReceiveProps({guessResults, currentRow}){
+    let {columns} = this.props;
+    
+    if(guessResults !== this.props.guessResults){
+      if (guessResults[this.props.currentRow-1] && guessResults[this.props.currentRow-1].onSpot === columns){
         this.props.gameSettingsFunctions.winGame();
         alert("YOU WIN :)");
-      } else if(this.props.currentRow === rows){
+      } else if(currentRow === 0){
         this.props.gameSettingsFunctions.loseGame();
         alert("YOU LOST :(");
       }  
@@ -57,7 +58,6 @@ class GameContainer extends Component {
 
 function mapStateToProps(state){
   return {
-    rows: state.peg.rows,
     columns: state.peg.columns,
     game: state.game,
     currentRow: state.peg.currentRow,

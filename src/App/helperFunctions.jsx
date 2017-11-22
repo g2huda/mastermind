@@ -16,7 +16,7 @@ export const checkResult = (prevState) => {
     console.log({target, guess});
     return  (prevState.currentGuess.includes("")? prevState:
     {...prevState, 
-        currentRow: prevState.currentRow+1, 
+        currentRow: prevState.currentRow-1, 
         currentGuess: resetArray(prevState.currentGuess.length),
         guessResults: prevState.guessResults.map((result, resultInd) => (
             resultInd===prevState.currentRow-1? {...result, onSpot, notOnSpot}: result))
@@ -56,13 +56,13 @@ const totalNotOnSpot = (target, guess) => {
 
 }
 export const place = (prevState, row, col, value) => {
-    if(!prevState.availableColours.includes(value)|| prevState.currentRow!==row){
+    if(!prevState.availableColours.includes(value)|| prevState.currentRow!==row+1){
         return prevState
     }
     
     return {...prevState, 
         currentGuess: prevState.currentGuess.map((item, index)=> index===col? value:item),
-        pegsOnBoard: prevState.pegsOnBoard.map((rowVal, rowInd) => rowInd===row-1?
+        pegsOnBoard: prevState.pegsOnBoard.map((rowVal, rowInd) => rowInd===row?
             rowVal.map((colVal, colInd) => colInd===col? value:colVal):rowVal)
     };
 }
